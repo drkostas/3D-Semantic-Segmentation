@@ -1,0 +1,9 @@
+matplotlib
+numpy
+tensorflow
+tensorboard
+pandas
+Pillow
+sklearn
+keras
+keras-tuner
