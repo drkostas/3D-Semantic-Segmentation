@@ -69,16 +69,12 @@ setup:
 setup_dev:
 	$(BIN)/pip install setuptools
 	$(BIN)/python setup.py install --dev
-m1_requirements:
-	conda install -c apple tensorflow-deps -y
-	python -m pip install tensorflow-macos
-	pip install tensorflow-metal
-	conda install -c conda-forge jupyter jupyterlab -y
-	pip install matplotlib numpy tensorboard pandas Pillow sklearn keras-tuner
 requirements:
+	#conda install -c fastchan pytorch torchvision
 	pip install -r requirements.txt
+	cd SegFormer && pip install -e . --user
 	#conda install --file requirements.txt -y
-clean:
+
 	$(BIN)/python setup.py clean
 create_env:
 	@echo "Creating virtual environment.."
