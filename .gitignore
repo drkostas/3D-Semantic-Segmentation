@@ -148,3 +148,5 @@ dmypy.json
 *.DS_Store
 logs/*.log
 /bck/
+/data/ADE/images/validation/
+/pretrained/ImageNet-1K/mit_b5.pth
