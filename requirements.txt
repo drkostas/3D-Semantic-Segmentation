@@ -5,8 +5,9 @@ pandas
 sklearn
 termcolor-logger>=1.0.3
 yaml_config_wrapper>=1.0.4
-torch
-torchvision==0.8.2
+# torch==1.7.1
+# torchvision==0.8.2
+attr
+ipython
 timm==0.3.2
-mmcv-full==1.2.7
 opencv-python==4.5.1.48
