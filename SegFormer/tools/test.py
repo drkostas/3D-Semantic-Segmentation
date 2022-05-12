@@ -154,6 +154,11 @@ def main():
     if rank == 0:
         if args.out:
             print(f'\nwriting results to {args.out}')
+            from pathlib import Path
+            import os
+            os.makedirs(os.path.dirname(args.out), exist_ok=True)
+            filename = Path(args.out)
+            filename.touch(exist_ok=True)
             mmcv.dump(outputs, args.out)
         kwargs = {} if args.eval_options is None else args.eval_options
         if args.format_only:

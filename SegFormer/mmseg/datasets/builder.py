@@ -60,7 +60,7 @@ def _concat_dataset(cfg, default_args=None):
 
 def build_dataset(cfg, default_args=None):
     """Build datasets."""
-    cfg.data_root = '../../data/ADE'
+    cfg.data_root = '../../data/ADEChallengeData2016'
 
     from .dataset_wrappers import ConcatDataset, RepeatDataset
     if isinstance(cfg, (list, tuple)):

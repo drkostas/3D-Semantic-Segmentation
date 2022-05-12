@@ -1,12 +1,16 @@
+termcolor-logger>=1.0.3
+yaml_config_wrapper>=1.0.4
 matplotlib
 numpy
 tensorboard
+tqdm
 pandas
 sklearn
-termcolor-logger>=1.0.3
-yaml_config_wrapper>=1.0.4
+nibabel
+monai==0.8.0
 # torch==1.7.1
 # torchvision==0.8.2
+scikit-image
 attr
 ipython
 timm==0.3.2
