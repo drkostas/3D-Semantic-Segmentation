@@ -25,12 +25,6 @@ def get_args() -> argparse.Namespace:
         'required': True,
         'help': "The path to the yaml configuration file."
     }
-    required_args.add_argument('-d', '--dataset', required=True,
-                               help="The datasets to train the network on. "
-                                    "Options (defined in yml): [and, xor, class_example]")
-    required_args.add_argument('-n', '--network', required=True,
-                               help="The network configuration to use. "
-                                    "Options (defined in yml): [1x1_net, 2x1_net, 2x2_net]")
     required_args.add_argument('-c', '--config-file', **config_file_params)
     # Optional args
     optional_args = parser.add_argument_group('Optional Arguments')
