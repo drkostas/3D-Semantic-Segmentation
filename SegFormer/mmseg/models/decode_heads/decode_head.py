@@ -213,7 +213,7 @@ class BaseDecodeHead(nn.Module, metaclass=ABCMeta):
         output = self.conv_seg(feat)
         return output
 
-    @force_fp32(apply_to=('seg_logit', ))
+    @force_fp32(apply_to=('seg_logit',))
     def losses(self, seg_logit, seg_label):
         """Compute segmentation loss."""
         loss = dict()

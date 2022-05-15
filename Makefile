@@ -73,7 +73,7 @@ setup_dev:
 requirements:
 	#cd mmcv && CC=clang CXX=clang++ CFLAGS='-stdlib=libc++' MMCV_WITH_OPS=1 $(BIN)/pip install -e .
 	pip install -r requirements.txt
-	conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=11.0 -c pytorch -y
+	conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=10.2 -c pytorch -y
 	pip install "mmcv-full>=1.1.4,<=1.3.0" -f https://download.openmmlab.com/mmcv/dist/cu110/torch1.7.0/index.html
 	cd SegFormer && pip install -e .
 clone_segformer:
