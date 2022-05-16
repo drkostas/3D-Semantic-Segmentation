@@ -150,3 +150,5 @@ logs/*.log
 /bck/
 /data/ADE/images/validation/
 /pretrained/ImageNet-1K/mit_b5.pth
+/data/MSD/
+/pretrained/ImageNet-1K/mit_b0.pth

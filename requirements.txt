@@ -15,3 +15,4 @@ attr
 ipython
 timm==0.3.2
 opencv-python==4.5.1.48
+imageio

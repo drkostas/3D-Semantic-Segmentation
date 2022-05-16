@@ -60,7 +60,8 @@ def _concat_dataset(cfg, default_args=None):
 
 def build_dataset(cfg, default_args=None):
     """Build datasets."""
-    cfg.data_root = '../../data/ADEChallengeData2016'
+    cfg.data_root = '../../data/MSD/Task09_Spleen_RGB_2D_512'
+    print("groun")
 
     from .dataset_wrappers import ConcatDataset, RepeatDataset
     if isinstance(cfg, (list, tuple)):
