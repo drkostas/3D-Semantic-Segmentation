@@ -3,7 +3,7 @@ from .custom import CustomDataset
 
 
 @DATASETS.register_module()
-class MSDDataset(CustomDataset):
+class MSDMarkedDataset(CustomDataset):
     """ADE20K dataset.
 
     In segmentation map annotation for ADE20K, 0 stands for background, which
@@ -17,7 +17,7 @@ class MSDDataset(CustomDataset):
     PALETTE = [[120, 120, 120], [92, 0, 255]]
 
     def __init__(self, **kwargs):
-        super(MSDDataset, self).__init__(
+        super(MSDMarkedDataset, self).__init__(
             img_suffix='.png',
             seg_map_suffix='.png',
             reduce_zero_label=True,

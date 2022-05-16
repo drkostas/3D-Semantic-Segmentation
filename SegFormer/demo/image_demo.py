@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 
 from mmseg.apis import inference_segmentor, init_segmentor, show_result_pyplot
-from mmseg.core.evaluation import get_palette
+from class_names import get_palette
 
 
 def main():

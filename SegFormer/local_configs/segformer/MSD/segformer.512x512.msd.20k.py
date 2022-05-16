@@ -2,7 +2,7 @@ _base_ = [
     '../../_base_/models/segformer.py',
     '../../_base_/datasets/msd.py',
     '../../_base_/default_runtime.py',
-    '../../_base_/schedules/schedule_40k_adamw.py'
+    '../../_base_/schedules/schedule_20k.py'
 ]
 
 # model settings
