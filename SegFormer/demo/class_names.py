@@ -120,7 +120,7 @@ def voc_palette():
 
 def msd_palette():
     """MSD palette for external use."""
-    return [[128, 128, 128], [0, 64, 0]]
+    return [[75, 0, 130], [255, 255, 0]]
 
 
 dataset_aliases = {
