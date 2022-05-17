@@ -10,7 +10,7 @@ my_cmap = cm.Reds
 my_cmap.set_under('k', alpha=0)
 
 
-def show_result_pyplot(model, img, result, palette=None, fig_size=(15, 10), train_or_test='train'):
+def show_result_pyplot(model, img, result, train_or_test='train', palette=None, fig_size=(15, 10)):
     """Visualize the segmentation results on the image.
 
     Args:
@@ -26,12 +26,13 @@ def show_result_pyplot(model, img, result, palette=None, fig_size=(15, 10), trai
 
     if hasattr(model, 'module'):
         model = model.module
-    img = model.show_result(img, result, palette=palette, show=False)
+    img_path = img
+    img = model.show_result(img_path, result, palette=palette, show=False)
     plt.figure(figsize=fig_size)
     fig, ax = plt.subplots(1, 1, figsize=fig_size)
     ax.imshow(mmcv.bgr2rgb(img), alpha=1.0)
     if train_or_test == 'train':
-        img_annot = img.replace("images", "annotations")
+        img_annot = img_path.replace("images", "annotations")
         img_annot = imread(img_annot)
         ax.imshow(img_annot, cmap=my_cmap, interpolation='none',
                   clim=[0.9, 1], alpha=.4)
@@ -52,15 +53,17 @@ def main():
         default='cityscapes',
         help='Color palette used for segmentation map')
     args = parser.parse_args()
-
+    from random import randrange
+    st = randrange(1000)
     # build the model from a config file and a checkpoint file
     model = init_segmentor(args.config, args.checkpoint, device=args.device)
-    for img in glob(f'{args.img}/*.png')[:args.num]:
+    for img in glob(f'{args.img}/*.png')[st:st+args.num]:
         print("Plotting: ", img)
         # test a single image
         result = inference_segmentor(model, img)
         # show the results
-        show_result_pyplot(model, img, result, get_palette(args.palette), args.train_or_test)
+        show_result_pyplot(model=model, img=img, result=result, palette=get_palette(args.palette),
+                           train_or_test=args.train_or_test)
 
 
 if __name__ == '__main__':
