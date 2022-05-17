@@ -1,6 +1,6 @@
 # dataset settings
-dataset_type = 'MSDBalancedDataset'
-data_root = 'data/MSD/Task09_Spleen_RGB_2D_512_Balanced'
+dataset_type = 'MSDLungsBalancedDataset'
+data_root = 'data/MSD/Task06_Lungs_RGB_2D_512_Balanced'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 crop_size = (512, 512)
@@ -36,20 +36,20 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        data_root='../../data/MSD/Task09_Spleen_RGB_2D_512_Balanced',
+        data_root='../../data/MSD/Task06_Lungs_RGB_2D_512_Balanced',
         img_dir='images/training',
         ann_dir='annotations/training',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        data_root='../../data/MSD/Task09_Spleen_RGB_2D_512_Balanced',
+        data_root='../../data/MSD/Task06_Lungs_RGB_2D_512_Balanced',
         img_dir='images/validation',
         ann_dir='annotations/validation',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        data_root='../../data/MSD/Task09_Spleen_RGB_2D_512_Balanced',
-        img_dir='images/validation',
+        data_root='../../data/MSD/Task06_Lungs_RGB_2D_512_Balanced',
+        img_dir='images/training',
         ann_dir='annotations/validation',
         pipeline=test_pipeline)
 )
