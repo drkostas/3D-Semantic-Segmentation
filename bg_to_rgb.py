@@ -2,7 +2,7 @@ import numpy as np
 from imageio import imread, imwrite
 import glob
 import os
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 for ind, image_path in enumerate(glob.glob("data/MSD/Task09_Spleen_2D_512_Balanced/images/training/*.png")):
     image = imread(image_path)
