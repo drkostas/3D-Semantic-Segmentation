@@ -31,11 +31,10 @@ def show_result_pyplot(model, img, result, train_or_test='train', palette=None, 
     plt.figure(figsize=fig_size)
     fig, ax = plt.subplots(1, 1, figsize=fig_size)
     ax.imshow(mmcv.bgr2rgb(img), alpha=1.0)
-    if train_or_test == 'train':
-        img_annot = img_path.replace("images", "annotations")
-        img_annot = imread(img_annot)
-        ax.imshow(img_annot, cmap=my_cmap, interpolation='none',
-                  clim=[0.9, 1], alpha=.4)
+    img_annot = img_path.replace("images", "annotations")
+    img_annot = imread(img_annot)
+    ax.imshow(img_annot, cmap=my_cmap, interpolation='none',
+              clim=[0.9, 1], alpha=.4)
     plt.show()
 
 

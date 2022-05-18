@@ -7,10 +7,11 @@ from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
 from mmcv.runner import get_dist_info, init_dist, load_checkpoint
 from mmcv.utils import DictAction
 
-from mmseg.apis import multi_gpu_test, single_gpu_test
+from custom_apis import multi_gpu_test, single_gpu_test
 from mmseg.datasets import build_dataloader, build_dataset
 from mmseg.models import build_segmentor
 from IPython import embed
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -19,20 +20,21 @@ def parse_args():
     parser.add_argument('checkpoint', help='checkpoint file')
     parser.add_argument(
         '--aug-test', action='store_true', help='Use Flip and Multi scale aug')
-    parser.add_argument('--out', default='work_dirs/res.pkl', help='output result file in pickle format')
+    parser.add_argument('--out', default='work_dirs/res.pkl',
+                        help='output result file in pickle format')
     parser.add_argument(
         '--format-only',
         action='store_true',
         help='Format the output results without perform evaluation. It is'
-        'useful when you want to format the result to a specific format and '
-        'submit it to the test server')
+             'useful when you want to format the result to a specific format and '
+             'submit it to the test server')
     parser.add_argument(
         '--eval',
         type=str,
         nargs='+',
         default='mIoU',
         help='evaluation metrics, which depends on the dataset, e.g., "mIoU"'
-        ' for generic datasets, and "cityscapes" for Cityscapes')
+             ' for generic datasets, and "cityscapes" for Cityscapes')
     parser.add_argument('--show', action='store_true', help='show results')
     parser.add_argument(
         '--show-dir', help='directory where painted images will be saved')
@@ -43,7 +45,7 @@ def parse_args():
     parser.add_argument(
         '--tmpdir',
         help='tmp directory used for collecting results from multiple '
-        'workers, available when gpu_collect is not specified')
+             'workers, available when gpu_collect is not specified')
     parser.add_argument(
         '--options', nargs='+', action=DictAction, help='custom options')
     parser.add_argument(
@@ -67,7 +69,7 @@ def main():
     args = parse_args()
 
     assert args.out or args.eval or args.format_only or args.show \
-        or args.show_dir, \
+           or args.show_dir, \
         ('Please specify at least one operation (save/eval/format/show the '
          'results / save the results) with the argument "--out", "--eval"'
          ', "--format-only", "--show" or "--show-dir"')
@@ -75,7 +77,6 @@ def main():
     if 'None' in args.eval:
         args.eval = None
     if args.eval and args.format_only:
-
         raise ValueError('--eval and --format_only cannot be both specified')
 
     if args.out is not None and not args.out.endswith(('.pkl', '.pickle')):
@@ -134,7 +135,7 @@ def main():
     model.CLASSES = checkpoint['meta']['CLASSES']
     model.PALETTE = checkpoint['meta']['PALETTE']
 
-    efficient_test = True #False
+    efficient_test = True  # False
     if args.eval_options is not None:
         efficient_test = args.eval_options.get('efficient_test', False)
 
@@ -142,6 +143,16 @@ def main():
         model = MMDataParallel(model, device_ids=[0])
         outputs = single_gpu_test(model, data_loader, args.show, args.show_dir,
                                   efficient_test)
+        # model.eval()
+        # dataset = data_loader.dataset
+        # for i, data in enumerate(data_loader):
+        #     with torch.no_grad():
+        #         result = model(return_loss=False, **data)
+        #         print(type(result))
+        #         print(result[0].shape)
+        #         break
+        # return
+
     else:
         model = MMDistributedDataParallel(
             model.cuda(),

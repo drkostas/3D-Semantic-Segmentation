@@ -49,7 +49,7 @@ data = dict(
     test=dict(
         type=dataset_type,
         data_root='../../data/MSD/Task06_Lungs_RGB_2D_512_Balanced',
-        img_dir='images/training',
+        img_dir='images/validation',
         ann_dir='annotations/validation',
         pipeline=test_pipeline)
 )

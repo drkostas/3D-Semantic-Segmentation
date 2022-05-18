@@ -1,6 +1,6 @@
 _base_ = [
     '../../_base_/models/segformer.py',
-    '../../_base_/datasets/msd.py',
+    '../../_base_/datasets/msd_balanced.py',
     '../../_base_/default_runtime.py',
     '../../_base_/schedules/schedule_20k.py'
 ]
@@ -10,13 +10,13 @@ norm_cfg = dict(type='SyncBN', requires_grad=True)
 find_unused_parameters = True
 model = dict(
     type='EncoderDecoder',
-    pretrained='../../pretrained/ImageNet-1K/mit_b0.pth',
+    pretrained='../../pretrained/ImageNet-1K/mit_b5.pth',
     backbone=dict(
-        type='mit_b0',
+        type='mit_b5',
         style='pytorch'),
     decode_head=dict(
         type='SegFormerHead',
-        in_channels=[32, 64, 160, 256],
+        in_channels=[64, 128, 320, 512],
         in_index=[0, 1, 2, 3],
         feature_strides=[4, 8, 16, 32],
         channels=128,
@@ -24,7 +24,7 @@ model = dict(
         num_classes=2,
         norm_cfg=norm_cfg,
         align_corners=False,
-        decoder_params=dict(embed_dim=256),
+        decoder_params=dict(embed_dim=768),
         loss_decode=dict(type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0)),
     # model training and testing settings
     train_cfg=dict(),

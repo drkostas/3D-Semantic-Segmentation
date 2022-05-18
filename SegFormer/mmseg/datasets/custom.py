@@ -321,7 +321,6 @@ class CustomDataset(Dataset):
         Returns:
             dict[str, float]: Default metrics.
         """
-
         if isinstance(metric, str):
             metric = [metric]
         allowed_metrics = ['mIoU', 'mDice']
@@ -341,7 +340,8 @@ class CustomDataset(Dataset):
             self.ignore_index,
             metric,
             label_map=self.label_map,
-            reduce_zero_label=self.reduce_zero_label)
+            nan_to_num=1,
+            reduce_zero_label=False)
         class_table_data = [['Class'] + [m[1:] for m in metric] + ['Acc']]
         if self.CLASSES is None:
             class_names = tuple(range(num_classes))
