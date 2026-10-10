@@ -1,3 +1,5 @@
+![3D-Semantic-Segmentation](docs/images/banner.png)
+
 # COSC525: Final Project:  Semantic Segmentation with Transformers on 3D Medical Images
 
 [![GitHub license](https://img.shields.io/badge/license-Apache-blue.svg)](
