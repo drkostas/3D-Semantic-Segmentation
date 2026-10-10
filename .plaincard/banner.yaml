@@ -1,0 +1,14 @@
+kind: banner
+name: 3D-Semantic-Segmentation
+line: Labels organs in 3D medical scans with a transformer model.
+accent: blue
+diagram:
+- cube:
+    label: 3D scan
+- arrow
+- box:
+    text: transformer
+- arrow
+- cube:
+    label: labels
+    accent: true
